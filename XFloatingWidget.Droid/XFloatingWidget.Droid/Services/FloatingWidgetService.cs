@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Net;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -35,7 +36,7 @@ namespace XFloatingWidget.Droid.Services
 
             layoutParams = new WindowManagerLayoutParams(ViewGroup.LayoutParams.WrapContent,
                                                          ViewGroup.LayoutParams.WrapContent,
-                                                         WindowManagerTypes.Phone,
+                                                         WindowManagerTypes.ApplicationOverlay,
                                                          WindowManagerFlags.NotFocusable,
                                                          Format.Translucent)
             {
