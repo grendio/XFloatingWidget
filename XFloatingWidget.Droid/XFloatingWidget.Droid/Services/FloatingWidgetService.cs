@@ -12,6 +12,7 @@ namespace XFloatingWidget.Droid.Services
     [Service]
     public class FloatingWidgetService : Service, IOnTouchListener
     {
+        private const int CLOSING_THRESHOLD = 100;
         private IWindowManager windowManager;
         private WindowManagerLayoutParams layoutParams;
         private WindowManagerLayoutParams closeLayoutParams;
@@ -25,9 +26,6 @@ namespace XFloatingWidget.Droid.Services
 
         private int centerX;
         private int centerY;
-
-        private double[] closeCoords = { 0, 0 };
-        private double[] floatingCoords = { 0, 0 };
 
         public override IBinder OnBind(Intent intent)
         {
@@ -91,8 +89,8 @@ namespace XFloatingWidget.Droid.Services
                     initialX = layoutParams.X;
                     initialY = layoutParams.Y;
 
-                    if (initialX + v.Width / 2 <= centerX + 100 && initialX + v.Width / 2 >= centerX - 100)
-                        if (initialY + v.Height / 2 <= centerY + 100 && initialY + v.Height / 2 >= centerY - 100)
+                    if (initialX + v.Width / 2 <= centerX + CLOSING_THRESHOLD && initialX + v.Width / 2 >= centerX - CLOSING_THRESHOLD)
+                        if (initialY + v.Height / 2 <= centerY + CLOSING_THRESHOLD && initialY + v.Height / 2 >= centerY - CLOSING_THRESHOLD)
                         {
                             floatingView.Visibility = ViewStates.Gone;
                             StopSelf();
