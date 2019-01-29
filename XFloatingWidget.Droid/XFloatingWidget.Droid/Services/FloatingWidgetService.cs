@@ -12,7 +12,7 @@ namespace XFloatingWidget.Droid.Services
     [Service]
     public class FloatingWidgetService : Service, IOnTouchListener
     {
-        private const int CLOSING_THRESHOLD = 100;
+        private const int CLOSING_THRESHOLD = 120;
         private IWindowManager windowManager;
         private WindowManagerLayoutParams layoutParams;
         private WindowManagerLayoutParams closeLayoutParams;
@@ -29,7 +29,7 @@ namespace XFloatingWidget.Droid.Services
 
         public override IBinder OnBind(Intent intent)
         {
-            throw new System.NotImplementedException();
+            throw null;
         }
 
         public override void OnCreate()
@@ -48,7 +48,7 @@ namespace XFloatingWidget.Droid.Services
                                  WindowManagerFlags.NotFocusable,
                                  Format.Translucent)
             {
-                Gravity = GravityFlags.Center,
+                Gravity = GravityFlags.Center
             };
 
             windowManager = GetSystemService(WindowService).JavaCast<IWindowManager>();
